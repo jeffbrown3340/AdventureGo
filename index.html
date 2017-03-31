@@ -1,33 +1,31 @@
 <html>
-Javascript Sample page. Enter in your app_key and any search criteria you want. <br>
-<script type="text/javascript" src="http://api.eventful.com/js/api">
-</script>
+<script type="text/javascript" src="https://api.eventful.com/js/api"></script>
+<body>
+<form >
+  Eventful API Query Generator<br>
+  Using Adventure Go! App Key = RzH4FnhD29mKTN4g<br>
+  Dates = 4-1-2017 thru 12-31-2017<br><br>
+  Where <input id="where"   type="text" name="where" value="Miami"/> <br>
+  Query <input id="query"   type="text" name="query" value="music"/> <br>
+</form>
+<!-- <input type="button" onclick="show_alert()" value="Single Event Lookup " /> <br> -->
+<input type="button" onclick="show_alert2()" value="Filtered query " /> <br>
+<br>
+<br>
+And here are five results:
+<div id="myResults"></div>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script type="text/javascript">
-function show_alert()
-{
-  var app_key = document.getElementById("app_key");
-  var oArgs = {
-            app_key: app_key.value ,
-            id: "20218701",
-            page_size: 25 ,
-  };
-  EVDB.API.call("/events/get", oArgs, function(oData) {
-      console.log(oArgs);
-      console.log(oData);
-      //alert("your myObject is " + JSON.stringify(oData) );
-    });
-}
+
+var where   = document.getElementById("where");
+var query   = document.getElementById("query");
+where.value = 'Miami'
+query.value = "Music"
 
 function show_alert2()
 {
-   var app_key = document.getElementById("app_key");
-   var where   = document.getElementById("where");
-   var query   = document.getElementById("query");
-   //app_key = "RzH4FnhD29mKTN4g"
-   where.value = 'Miami'
-   query.value = "Music"
    var oArgs = {
-      app_key: app_key.value ,
+      app_key: "RzH4FnhD29mKTN4g",
       q: query.value,
       where: where.value,
       "date": "2017040100-2017123100",
@@ -36,24 +34,23 @@ function show_alert2()
       sort_order: "popularity",
    };
    EVDB.API.call("/events/search", oArgs, function(oData) {
-      console.log(oArgs);
-      console.log(oData);
-      //alert("your myObject is " + JSON.stringify(oData));
+      var evts = oData.events;
+      $("#myResults").empty();
+      for (i=0; i<evts.event.length; i++) {
+        var d = $("<div>");
+        d.attr("style", "padding:5px 0px 5px");
+        d.html(
+          "title= "+evts.event[i].title+"<br>" +
+          "venue= "+evts.event[i].venue_name+", "+ 
+                    evts.event[i].venue_address + ", " +
+                    evts.event[i].venue_address + ", " +
+                    evts.event[i].city_name + "<br>" +
+          " time= "+ evts.event[i].start_time
+        );
+        $("#myResults").append(d);
+      }
     });
 }
 </script>
-
-<body>
-<form >
-  Your app_key <input id="app_key" type="text" name="app_key" value=""/> <br>
-  Where <input id="where"   type="text" name="where" value="San Diego"/> <br>
-  Query <input id="query"   type="text" name="query" value="music"/> <br>
-</form>
-<input type="button" onclick="show_alert()" value="Single Event Lookup " /> <br>
-<input type="button" onclick="show_alert2()" value="Filtered query " /> <br>
-<br>
-<br>
-And here is the sample code:
-
 </body>
 </html>
