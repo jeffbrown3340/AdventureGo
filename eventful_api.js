@@ -10,16 +10,25 @@
 function getEventfulObjs(){
   // harvest the values from HTML
   // change ID names to match Andrea
+  // done, added IDs iL/iC to input fields 4-2-2017-1645
   var qL = $("#iL").val();
   var qC = $("#iC").val();
+  
+  // if either value is empty, do nothing
+  // rationale -- the input field placeholders give instructions
+  if (qL === "" || qC === "") {return}
+
+  // Next put the dates into a two element array
   // if grabbing from HTML
   //var d0 = [ $("#dateFrom").val(), $("#dateThru").val()];
   // if using current date thru plus 30 days
   var d0 = [moment().format("MM/DD/YYYY"), moment().add(30, 'days').format("MM/DD/YYYY")];
   console.log(qL, qC, d0[0], d0[1]);
-  //check if both dates are valid
+
+  // validate both dates
   if (moment(d0[0], "MM/DD/YYYY").isValid() && moment(d0[1], "MM/DD/YYYY").isValid()) {
     console.log("dates are valid");
+
     //concate into Eventful string YYYYMMDD00-YYYYMMDD00
     //Eventful ignores the final two zeroes in the date strings
     var d1 = 
@@ -28,6 +37,7 @@ function getEventfulObjs(){
       moment(d0[1], "MM/DD/YYYY").format("YYYYMMDD") + "00"
     ); 
       console.log(qL, qC, d1);
+
       //store query to Eventful DATA object
      var oArgs = {
         app_key: "RzH4FnhD29mKTN4g",
@@ -38,6 +48,7 @@ function getEventfulObjs(){
         page_size: 5,
         sort_order: "popularity",
      };
+
      // call Eventful API with our query
      // passing date string for test display, can be removed
       queryEventfulAPI(oArgs, d1);     
@@ -58,14 +69,20 @@ function queryEventfulAPI(oArgs, d1)
 {
    // the Eventful call
    EVDB.API.call("/events/search", oArgs, function(oData) {
+
       // evts is the complete object
       // for production, return evts?
       var evts = oData.events;
       console.log(oData);
-      console.log(JSON.stringify(evts));
+
       // put the data into the HTML testing page
+      // 4-2-2017 1645 put the data into Andrea's HTML
       for (i=0; i < 5; i++) {
+
+        // this line makes the entire div thumbnail a link to new window/event web page
         $("#th" + i).attr("onclick", "windowOpen('" + evts.event[i].url + "')");
+
+        // continue populating the HTML
         $("#th" + i + " .caption h3").html(evts.event[i].title);
         $("#th" + i + " .caption p").html
           (
@@ -81,7 +98,7 @@ function queryEventfulAPI(oArgs, d1)
 }
 
 
-function TESTING_NOT_CURRENTLY_USED(){
+function FOR_TESTING_NOT_CURRENTLY_USED(){
     $("#qtyResults").html
   (
     "You selected dates: " + d1 + "<br>" + 
