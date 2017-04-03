@@ -1,56 +1,138 @@
-<html>
-<script type="text/javascript" src="https://api.eventful.com/js/api"></script>
+<!-- index_jeff0.html from branch Andrea 04-02-2017-1645 -->
+<!-- index_jeff1.html Jeff's working effort -->
+<!-- index_jeff1.html renamed to index.html, uploade to jeffbrown3340.github.io/TravelApp -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Adventure Go!</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- JLB 4-2-2017-1705EDT begin -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="eventful_api.js"></script>
+    <!-- JLB 4-2-2017-1705EDT end, see also script tag bottom of body -->
+
+</head>
+
 <body>
-<form >
-  Eventful API Query Generator<br>
-  Using Adventure Go! App Key = RzH4FnhD29mKTN4g<br>
-  Dates = 4-1-2017 thru 12-31-2017<br><br>
-  Where <input id="where"   type="text" name="where" value="Miami"/> <br>
-  Query <input id="query"   type="text" name="query" value="music"/> <br>
-</form>
-<!-- <input type="button" onclick="show_alert()" value="Single Event Lookup " /> <br> -->
-<input type="button" onclick="show_alert2()" value="Filtered query " /> <br>
-<br>
-<br>
-And here are five results:
-<div id="myResults"></div>
-<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<script type="text/javascript">
-
-var where   = document.getElementById("where");
-var query   = document.getElementById("query");
-where.value = 'Miami'
-query.value = "Music"
-
-function show_alert2()
-{
-   var oArgs = {
-      app_key: "RzH4FnhD29mKTN4g",
-      q: query.value,
-      where: where.value,
-      "date": "2017040100-2017123100",
-      "include": "tags,categories",
-      page_size: 5,
-      sort_order: "popularity",
-   };
-   EVDB.API.call("/events/search", oArgs, function(oData) {
-      var evts = oData.events;
-      $("#myResults").empty();
-      for (i=0; i<evts.event.length; i++) {
-        var d = $("<div>");
-        d.attr("style", "padding:5px 0px 5px");
-        d.html(
-          "title= "+evts.event[i].title+"<br>" +
-          "venue= "+evts.event[i].venue_name+", "+ 
-                    evts.event[i].venue_address + ", " +
-                    evts.event[i].venue_address + ", " +
-                    evts.event[i].city_name + "<br>" +
-          " time= "+ evts.event[i].start_time
-        );
-        $("#myResults").append(d);
-      }
-    });
-}
-</script>
+    <!-- Navigation -->
+    <div class="navbar navbar-inverse navbar-fixed-top" id="topBar" role="navigation">
+        <a class="navbar-brand" id="adventureTitle" href="index.html">Adventure Go!</a>
+    </div>
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Events
+                </h1>
+                <form class="main-search border-less-inputs inputs-3" role="form" method="post">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="iC" placeholder="Enter Event Type (Music, Food, Etc.)" aria-describedby="basic-addon2">
+                            <span class="input-group-addon" onclick="getEventfulObjs()" id="eventSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                        </div>
+                        <br>
+                        <!-- /.form-group -->
+                        <div class="input-row">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="iL" placeholder="Search Location" aria-describedby="basic-addon2">
+                                <span class="input-group-addon" onclick="getEventfulObjs()" id="locationSearch" ><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.input-row -->
+                </form>
+                <!-- /input-group -->
+            </div>
+        </div>
+        <br>
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="col-md-12 text-center">
+                    <div class="thumbnail" id="th0">
+                        <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                        <div class="caption">
+                            <h3>Event<br>
+                            <small>Event Type</small>
+                        </h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Map Column -->
+            <div class="col-md-8">
+                <!-- Embedded Google Map -->
+                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+            </div>
+            <!-- Contact Details Column -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Featured Events</h2>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail" id="th1">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h3>Event<br>
+                            <small>Event Type</small>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail" id="th2">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h3>Event<br>
+                            <small>Event Type</small>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail" id="th3">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h3>Event<br>
+                            <small>Event Type</small>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail" id="th4">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h3>Event<br>
+                            <small>Event Type</small>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <!-- /.container -->
+    <!-- jQuery -->
 </body>
+
 </html>
