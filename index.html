@@ -1,6 +1,3 @@
-<!-- index_jeff0.html from branch Andrea 04-02-2017-1645 -->
-<!-- index_jeff1.html Jeff's working effort -->
-<!-- index_jeff1.html renamed to index.html, uploade to jeffbrown3340.github.io/TravelApp -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,13 +12,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- JLB 4-2-2017-1705EDT begin -->
+    <!-- JLB 4-5-2017-2120EDT begin -->
+    <!-- I realize with git I don't have to add all these footprint comments just OCD until Im completely comfy -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="eventful_api.js"></script>
-    <!-- JLB 4-2-2017-1705EDT end, see also script tag bottom of body -->
-
+    <!-- JLB 4-5-2017-2120EDT end, see also script tag bottom of body -->
 </head>
 
 <body>
@@ -33,47 +30,48 @@
     <div class="container">
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-sm-12">
                 <h1 class="page-header">Events
                 </h1>
-                <form class="main-search border-less-inputs inputs-3" role="form" method="post">
-                    <div class="input-row">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="iC" placeholder="Enter Event Type (Music, Food, Etc.)" aria-describedby="basic-addon2">
-                            <span class="input-group-addon" onclick="getEventfulObjs()" id="eventSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group" id="searchField">
+                            <input type="text" class="form-control" id="iC" placeholder="Keyword">
                         </div>
-                        <br>
-                        <!-- /.form-group -->
-                        <div class="input-row">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="iL" placeholder="Search Location" aria-describedby="basic-addon2">
-                                <span class="input-group-addon" onclick="getEventfulObjs()" id="locationSearch" ><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
-                            </div>
-                        </div>
+                        <!-- /input-group -->
                     </div>
-                    <!-- /.input-row -->
-                </form>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="iL" placeholder="Location">
+                            <span class="input-group-addon" onclick="getEventfulObjs()" id="locationSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
                 <!-- /input-group -->
             </div>
         </div>
         <br>
         <!-- Content Row -->
         <div class="row">
-            <div class="col-md-4">
-                <div class="col-md-12 text-center">
-                    <div class="thumbnail" id="th0">
-                        <img class="img-responsive" alt="">
-                        <div class="caption">
-                            <h3></h3>
-                            <p></p>
-                        </div>
+            <div class="col-md-4 text-center">
+                <div class="thumbnail" id="th0">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h3>Event<br>
+                            <small>Event Type</small>
+                        </h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
                     </div>
                 </div>
             </div>
             <!-- Map Column -->
             <div class="col-md-8">
                 <!-- Embedded Google Map -->
-                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
             </div>
             <!-- Contact Details Column -->
         </div>
@@ -84,45 +82,45 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th1">
-                    <img class="img-responsive" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
                         </h3>
-                        <p></p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th2">
-                    <img class="img-responsive" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
                         </h3>
-                        <p></p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th3">
-                    <img class="img-responsive" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
                         </h3>
-                        <p></p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th4">
-                    <img class="img-responsive" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
                         </h3>
-                        <p></p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste saepe et quisquam nesciunt maxime.</p>
                     </div>
                 </div>
             </div>
@@ -130,16 +128,16 @@
         <hr>
     </div>
     <!-- /.container -->
-    <script>
-        $("#iC").val("Music");
-        $("#iL").val("Miami");
-        setTimeout(function(){
-            $("#iC").val("");
-            $("#iL").val("");
-        }, 3000);
-        getEventfulObjs();
-    </script>
     <!-- jQuery -->
+    <script>
+    $("#iC").val("Music");
+    $("#iL").val("Miami");
+    setTimeout(function() {
+        $("#iC").val("");
+        $("#iL").val("");
+    }, 3000);
+    getEventfulObjs();
+    </script>
 </body>
 
 </html>
