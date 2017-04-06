@@ -1,13 +1,6 @@
-// these values for demo and testing only
-// delete before merge -- begin
-//$("#qryLocation").val("Miami");
-//$("#qryCategory").val("Music");
-//$("#dateFrom").val("04/15/2017");
-//$("#dateThru").val("12/31/2017");
-// delete before merge -- end
-
-
 function getEventfulObjs(){
+  console.log("GEO howManyResults=", howManyResults);
+
   // harvest the values from HTML
   // change ID names to match Andrea
   // done, added IDs iL/iC to input fields 4-2-2017-1645
@@ -75,9 +68,12 @@ function queryEventfulAPI(oArgs, d1)
       var evts = oData.events;
       console.log(oData);
 
+      //call the map and put it into the html
+      $("#map").html(initMap(evts));
+
       // put the data into the HTML testing page
       // 4-2-2017 1645 put the data into Andrea's HTML
-      for (i=0; i < 5; i++) {
+      for (var i=0; i < 5; i++) {
 
         // this line makes the entire div thumbnail a link to new window/event web page
         $("#th" + i).attr("onclick", "windowOpen('" + evts.event[i].url + "')");
@@ -95,31 +91,4 @@ function queryEventfulAPI(oArgs, d1)
       }
 
     });
-}
-
-
-function FOR_TESTING_NOT_CURRENTLY_USED(){
-    $("#qtyResults").html
-  (
-    "You selected dates: " + d1 + "<br>" + 
-    oData.total_items + " results,<br>Here's the first " + oData.page_size + " by popularity:<br>" +
-    "============================================="
-  );
-  // testing
-  $("#myResults").empty();
-
-  for (i=0; i<evts.event.length; i++) {
-    var d = $("<div>");
-    d.attr("style", "padding:5px 0px 5px");
-  // andrea 4-2-2017 1645
-    d.html(
-      "title= "+evts.event[i].title+"<br>" +
-      "venue= "+evts.event[i].venue_name+", "+ 
-                evts.event[i].venue_address + ", " +
-                evts.event[i].venue_address + ", " +
-                evts.event[i].city_name + "<br>" +
-      " time= "+ evts.event[i].start_time
-    );
-    $("#myResults").append(d);
-  }
 }

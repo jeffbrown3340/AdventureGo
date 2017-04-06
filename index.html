@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- JLB 4-5-2017-2120EDT begin -->
-    <!-- I realize with git I don't have to add all these footprint comments just OCD until Im completely comfy -->
+    <!-- JLB 4-5-2017-0000EDT begin -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="https://api.eventful.com/js/api"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="eventful_api.js"></script>
-    <!-- JLB 4-5-2017-2120EDT end, see also script tag bottom of body -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJeRNeoJlxyV7NFd0vjocmBodXNztqG_U"></script> 
+    <script src="GoogleMapAPI.js"></script>
+    <!-- JLB 4-5-2017-0000EDT end, see also script tag bottom of body -->
 </head>
 
 <body>
@@ -59,7 +60,7 @@
         <div class="row">
             <div class="col-md-4 text-center">
                 <div class="thumbnail" id="th0">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
@@ -69,9 +70,11 @@
                 </div>
             </div>
             <!-- Map Column -->
-            <div class="col-md-8">
+            <!-- jlb added id map -->
+            <div class="col-md-8" id="map">
                 <!-- Embedded Google Map -->
-                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+                <!-- jlb removed test map -->
+                <!--<iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe> -->
             </div>
             <!-- Contact Details Column -->
         </div>
@@ -82,7 +85,8 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th1">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <!-- jlb removed all placeholders to eliminate warnings -->
+                    <img class="img-responsive" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
@@ -93,7 +97,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th2">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
@@ -104,7 +108,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th3">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
@@ -115,7 +119,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail" id="th4">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" alt="">
                     <div class="caption">
                         <h3>Event<br>
                             <small>Event Type</small>
@@ -130,6 +134,7 @@
     <!-- /.container -->
     <!-- jQuery -->
     <script>
+    var howManyResults = 5;
     $("#iC").val("Music");
     $("#iL").val("Miami");
     setTimeout(function() {
